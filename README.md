@@ -18,6 +18,30 @@ Aplikasi **e-voting pemilihan ketua organisasi mahasiswa** berbasis blockchain E
 - Mengatur jadwal mulai & selesai voting
 - Tabel data kandidat dan grafik perolehan suara sementara (doughnut chart)
 
+## Tampilan
+
+### Login
+Pemilih wajib menghubungkan MetaMask sebelum login dengan NIM dan password.
+
+![Halaman Login](docs/screenshots/login.png)
+
+### Halaman Pemilih
+Daftar kandidat beserta visi & misi. Setelah memilih, muncul notifikasi bahwa suara sudah tercatat di blockchain.
+
+![Halaman Pemilih](docs/screenshots/voter.png)
+
+### Admin
+
+| Dashboard | Tambah Kandidat |
+|---|---|
+| ![Dashboard Admin](docs/screenshots/admin-dashboard.png) | ![Tambah Kandidat](docs/screenshots/admin-tambah-kandidat.png) |
+| **Data Kandidat** | **Atur Jadwal Voting** |
+| ![Data Kandidat](docs/screenshots/admin-data-kandidat.png) | ![Atur Jadwal](docs/screenshots/admin-jadwal.png) |
+
+**Perolehan Suara Sementara (real-time)**
+
+![Statistik Suara](docs/screenshots/admin-statistik.png)
+
 ## Arsitektur
 
 Sistem memakai arsitektur hibrida **off-chain + on-chain**:
