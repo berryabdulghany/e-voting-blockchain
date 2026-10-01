@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Hasil build (dibuat ulang lewat `truffle migrate` dan `npm run build`)
+build/
+src/dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Rahasia / konfigurasi lokal
+.env
+*.env
+!.env.example
+
+# Dokumen
+*.pdf

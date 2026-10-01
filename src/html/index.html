@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voting Page - UNIKOM</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand">
+        <img src="http://127.0.0.1:8000/public/logounikom.png" alt="Logo" />
+        <span>E-VOTING UNIKOM</span>
+      </div>
+      <div class="nav-info">
+        <div class="wallet-badge" id="accountBadge">
+          <i class="fas fa-wallet"></i>
+          <span id="accountAddress">Menghubungkan...</span>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="Keluar">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </nav>
+
+    <header class="hero-section">
+      <div class="container">
+        <h1>Suara Anda, Masa Depan Kita</h1>
+        <p>Pilih kandidat terbaik untuk memimpin organisasi</p>
+
+        <div class="status-card">
+          <div class="status-item">
+            <i class="far fa-calendar-alt"></i>
+            <span id="dates">Memuat Jadwal...</span>
+          </div>
+          <div class="status-item">
+            <i class="fas fa-vote-yea"></i>
+            <span id="totalCandidates">... Kandidat</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div id="msg"></div>
+
+      <div id="boxCandidate" class="grid-container">
+        <div class="loading-state">
+          <i class="fas fa-circle-notch fa-spin"></i>
+          <p>Mengambil Data dari Blockchain...</p>
+        </div>
+      </div>
+    </main>
+
+    <div class="action-bar">
+      <div class="action-content">
+        <div class="selection-info">
+          <small>Kandidat Terpilih:</small>
+          <span id="selectedName">- Belum Memilih -</span>
+        </div>
+
+        <button id="voteButton" class="btn-vote" onclick="App.vote()" disabled>
+          <i class="fas fa-paper-plane"></i> KIRIM SUARA
+        </button>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../dist/app.bundle.js" type="module"></script>
+
+    <script>
+      // Update Nama Kandidat di Action Bar saat Radio Button diklik
+      $(document).on("change", 'input[name="candidate"]', function () {
+        var name = $(this).closest(".candidate-card").find(".card-name").text();
+        $("#selectedName")
+          .text(name)
+          .css("color", "#003366")
+          .css("font-weight", "bold");
+      });
+
+      // Logic Logout Voter (Redirect ke Root)
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", function () {
+          Swal.fire({
+            title: "Keluar?",
+            text: "Sesi voting Anda akan berakhir.",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Ya, Keluar",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.removeItem("jwtTokenVoter");
+              // Redirect ke halaman Login Utama
+              window.location.replace("http://localhost:8080/");
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

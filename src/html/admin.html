@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard - UNIKOM</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header class="header-admin">
+      <div class="header-content">
+        <div class="brand-area">
+          <img
+            src="http://127.0.0.1:8000/public/logounikom.png"
+            alt="Logo"
+            style="
+              width: 50px;
+              background: white;
+              border-radius: 50%;
+              padding: 5px;
+            "
+          />
+          <div class="brand-text">
+            <h1>Admin Portal</h1>
+            <p>Decentralized Voting System</p>
+          </div>
+        </div>
+        <div class="admin-profile">
+          <i class="fas fa-user-shield"></i> Administrator |
+          <a
+            href="#"
+            id="logoutBtn"
+            style="
+              color: #ff6b6b;
+              text-decoration: none;
+              font-weight: bold;
+              margin-left: 10px;
+            "
+          >
+            <i class="fas fa-sign-out-alt"></i> Keluar
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div id="mainMenu" class="dashboard-menu">
+      <div class="menu-card bg-green" onclick="showPage('pageInput')">
+        <i class="fas fa-user-plus"></i>
+        <h3>Tambah Kandidat</h3>
+        <p>Form Input Calon Baru</p>
+      </div>
+
+      <div class="menu-card bg-purple" onclick="showPage('pageList')">
+        <i class="fas fa-list-ul"></i>
+        <h3>Data Kandidat</h3>
+        <p>Lihat Tabel Terdaftar</p>
+      </div>
+
+      <div class="menu-card bg-yellow" onclick="showPage('pageDate')">
+        <i class="far fa-calendar-alt"></i>
+        <h3>Atur Jadwal</h3>
+        <p>Set Tanggal Voting</p>
+      </div>
+
+      <div class="menu-card bg-blue" onclick="showPage('pageStats')">
+        <i class="fas fa-chart-pie"></i>
+        <h3>Statistik Suara</h3>
+        <p>Grafik Real-Time</p>
+      </div>
+
+      <div class="menu-card bg-red">
+        <i class="fas fa-users"></i>
+        <h3>Total Kandidat</h3>
+        <p
+          style="font-size: 1.5em; font-weight: bold; margin-top: 0"
+          id="statCount"
+        >
+          Loading...
+        </p>
+      </div>
+    </div>
+
+    <div id="pageInput" class="page-section" style="display: none">
+      <button class="btn-back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Kembali ke Menu
+      </button>
+
+      <div class="admin-card">
+        <div class="card-title">
+          <i class="fas fa-user-plus"></i> Input Kandidat Baru
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Kandidat</label>
+            <input
+              id="name"
+              type="text"
+              class="input-custom"
+              placeholder="Nama Lengkap..."
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label>Organisasi / Kelas</label>
+            <input
+              id="organization"
+              type="text"
+              class="input-custom"
+              placeholder="Contoh: HIMA IF-1..."
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama File Foto</label>
+            <input
+              id="photo"
+              type="text"
+              class="input-custom"
+              placeholder="Contoh: calon1.jpg"
+            />
+            <small style="color: gray; font-size: 0.8em"
+              >*File wajib ada di folder src/assets/</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Visi & Misi</label>
+          <textarea
+            id="vision"
+            class="input-custom"
+            rows="4"
+            placeholder="Tuliskan Visi Misi..."
+          ></textarea>
+        </div>
+
+        <input
+          id="addCandidate"
+          type="submit"
+          class="btn-action btn-add"
+          value="Tambahkan Kandidat"
+        />
+      </div>
+    </div>
+
+    <div id="pageList" class="page-section" style="display: none">
+      <button class="btn-back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Kembali ke Menu
+      </button>
+
+      <div class="admin-card">
+        <div class="card-title">
+          <i class="fas fa-list"></i> Data Kandidat Terdaftar
+          <span
+            style="
+              float: right;
+              background: #eee;
+              padding: 2px 10px;
+              border-radius: 10px;
+              font-size: 0.7em;
+              color: #555;
+            "
+            >Live Blockchain</span
+          >
+        </div>
+
+        <div class="table-responsive">
+          <table
+            style="width: 100%; border-collapse: collapse; margin-top: 10px"
+          >
+            <thead>
+              <tr
+                style="
+                  background: #f8f9fa;
+                  text-align: left;
+                  border-bottom: 2px solid #ddd;
+                  font-size: 0.9em;
+                  color: #555;
+                "
+              >
+                <th style="padding: 10px; text-align: center">ID</th>
+                <th style="padding: 10px; text-align: center">Foto</th>
+                <th style="padding: 10px">Nama</th>
+                <th style="padding: 10px">Org</th>
+                <th style="padding: 10px; text-align: center">Suara</th>
+              </tr>
+            </thead>
+            <tbody id="candidateTableBody" style="font-size: 0.9em"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="pageDate" class="page-section" style="display: none">
+      <button class="btn-back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Kembali ke Menu
+      </button>
+
+      <div class="admin-card">
+        <div class="card-title">
+          <i class="far fa-calendar-alt"></i> Atur Jadwal Voting
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mulai</label
+            ><input id="startDate" type="date" class="input-custom" />
+          </div>
+          <div class="form-group">
+            <label>Selesai</label
+            ><input id="endDate" type="date" class="input-custom" />
+          </div>
+        </div>
+        <input
+          id="addDate"
+          type="submit"
+          class="btn-action btn-date"
+          value="Simpan Jadwal"
+        />
+      </div>
+    </div>
+
+    <div id="pageStats" class="page-section" style="display: none">
+      <button class="btn-back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Kembali ke Menu
+      </button>
+
+      <div class="admin-card">
+        <div class="card-title">
+          <i class="fas fa-chart-pie"></i> Perolehan Suara Sementara
+        </div>
+
+        <div style="width: 80%; max-width: 400px; margin: 0 auto 30px">
+          <canvas id="voteChart"></canvas>
+        </div>
+
+        <div style="border-top: 2px dashed #eee; padding-top: 20px">
+          <h4 style="color: #555; margin-bottom: 15px; text-align: center">
+            Rincian Detail:
+          </h4>
+
+          <div
+            id="voteLegend"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+              gap: 15px;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../dist/app.bundle.js" type="module"></script>
+
+    <script>
+      // 1. Fungsi Navigasi
+      function showPage(pageId) {
+        document
+          .querySelectorAll(".page-section")
+          .forEach((el) => (el.style.display = "none"));
+        document.getElementById("mainMenu").style.display = "none";
+        const target = document.getElementById(pageId);
+        if (target) target.style.display = "block";
+      }
+
+      // 2. Fungsi Kembali
+      function goBack() {
+        document
+          .querySelectorAll(".page-section")
+          .forEach((el) => (el.style.display = "none"));
+        document.getElementById("mainMenu").style.display = "grid";
+      }
+
+      // 3. Logic Logout
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          Swal.fire({
+            title: "Yakin mau Logout?",
+            text: "Sesi Admin akan diakhiri.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ya, Keluar!",
+            cancelButtonText: "Batal",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.removeItem("jwtTokenAdmin");
+              Swal.fire({
+                title: "Berhasil Keluar!",
+                text: "Sampai jumpa lagi...",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false,
+              }).then(() => {
+                window.location.replace("http://localhost:8080/");
+              });
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

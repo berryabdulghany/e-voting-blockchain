@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - E-Voting UNIKOM</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="left-panel">
+        <div class="overlay-pattern"></div>
+        <div class="content-left">
+          <div class="logo-box">
+            <img
+              src="http://127.0.0.1:8000/public/logounikom.png"
+              alt="Logo UNIKOM"
+              class="animate-float"
+            />
+          </div>
+
+          <h2>E-Voting Mahasiswa</h2>
+          <p class="campus-name">Universitas Komputer Indonesia</p>
+
+          <div class="info-box">
+            <ul>
+              <li>
+                <i class="fas fa-shield-alt"></i> Secured by Ethereum Blockchain
+              </li>
+              <li>
+                <i class="fas fa-user-graduate"></i> Verifikasi Data Akademik
+              </li>
+              <li><i class="fas fa-vote-yea"></i> Transparan & Immutable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="login-header">
+          <h3>Selamat Datang</h3>
+          <p>Wajib hubungkan dompet sebelum login</p>
+        </div>
+
+        <button id="connectWalletBtn" type="button" class="btn-metamask">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
+            width="25"
+          />
+          <span>Hubungkan MetaMask</span>
+        </button>
+
+        <p id="walletAddress" class="wallet-info" style="display: none"></p>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="voter-id">NIM / Voter ID</label>
+            <div class="input-wrapper">
+              <i class="fas fa-id-card"></i>
+              <input
+                type="text"
+                id="voter-id"
+                name="voter-id"
+                placeholder="Masukkan NIM"
+                required
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-login">
+            MASUK SISTEM <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div class="footer-copy">&copy; 2026 Tugas Akhir Blockchain</div>
+      </div>
+    </div>
+
+    <script src="../js/login.js" type="module"></script>
+  </body>
+</html>

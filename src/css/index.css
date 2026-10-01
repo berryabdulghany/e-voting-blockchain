@@ -1,0 +1,322 @@
+/* =========================================
+   RESET & GLOBAL
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f0f2f5;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    padding-bottom: 120px; /* Space lebih lega buat Action Bar */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   NAVBAR (ATAS)
+   ========================================= */
+.navbar {
+    background: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #003366;
+}
+.nav-brand img { width: 40px; }
+
+.nav-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.wallet-badge {
+    background: #e3f2fd;
+    color: #003366;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-logout {
+    background: #ffebee;
+    color: #d32f2f;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-logout:hover { background: #ffcdd2; }
+
+/* =========================================
+   HERO SECTION (BANNER)
+   ========================================= */
+.hero-section {
+    background: linear-gradient(135deg, #003366 0%, #005b96 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px 80px;
+    border-radius: 0 0 40px 40px;
+    margin-bottom: -40px; /* Biar kartu naik ke atas */
+}
+
+.hero-section h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+.hero-section p { opacity: 0.8; margin-bottom: 30px; }
+
+.status-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    display: inline-flex;
+    gap: 30px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.status-item { display: flex; align-items: center; gap: 8px; font-size: 0.9em; }
+
+/* =========================================
+   GRID SYSTEM
+   ========================================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: #666;
+    background: white;
+    border-radius: 20px;
+}
+
+/* =========================================
+   KARTU KANDIDAT
+   ========================================= */
+.candidate-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.candidate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 51, 102, 0.15);
+}
+
+/* Garis warna di atas kartu */
+.card-top {
+    height: 60px;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+
+.candidate-img {
+    width: 100px;
+    height: 100px;
+    margin: -50px auto 10px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-name {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card-party {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #005b96;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin: 0 auto 15px;
+}
+
+/* --- [UPDATE] VISI MISI BOX --- */
+.vision-box {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    text-align: left;
+    font-size: 0.85em;
+    color: #555;
+    border: 1px dashed #ddd;
+    line-height: 1.5;
+
+    /* INI YANG BIKIN TEKS TURUN KE BAWAH */
+    white-space: pre-wrap;     
+    word-wrap: break-word;     
+    overflow-wrap: break-word; 
+}
+
+.vision-label {
+    font-weight: 700;
+    color: #003366;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+/* ---------------------------------- */
+
+.vote-count {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #333;
+}
+.vote-label {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   RADIO BUTTON & SELECT
+   ========================================= */
+.radio-container {
+    margin-top: auto; 
+}
+.radio-container input { display: none; }
+
+.btn-select {
+    display: block;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    color: #777;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.radio-container input:checked + .btn-select {
+    background: #003366;
+    color: white;
+    border-color: #003366;
+}
+
+.candidate-card:has(input:checked) {
+    border-color: #003366;
+}
+
+/* =========================================
+   ACTION BAR (FLOATING BOTTOM)
+   ========================================= */
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    z-index: 900;
+}
+
+.action-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selection-info {
+    display: flex;
+    flex-direction: column;
+}
+.selection-info small { color: #888; font-size: 0.8em; }
+.selection-info span { font-size: 1.1em; color: #333; }
+
+.btn-vote {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+}
+.btn-vote:hover { transform: translateY(-2px); }
+.btn-vote:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .nav-brand span { display: none; } 
+    .hero-section h1 { font-size: 1.8em; }
+    .status-card { flex-direction: column; gap: 10px; padding: 15px; width: 100%; }
+    .action-content { flex-direction: column; gap: 15px; text-align: center; }
+    .btn-vote { width: 100%; }
+}

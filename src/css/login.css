@@ -1,0 +1,300 @@
+/* =========================================
+   1. RESET & GLOBAL STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Background Gradient tipis biar gak kaku putih polos */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   2. CONTAINER UTAMA (KARTU)
+   ========================================= */
+.login-container {
+    background: #fff;
+    width: 950px;
+    height: 600px;
+    border-radius: 20px;
+    /* Shadow lebih soft dan luas */
+    box-shadow: 0 20px 60px rgba(0, 51, 102, 0.15);
+    display: flex;
+    overflow: hidden;
+    max-width: 95%;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   3. PANEL KIRI (BRANDING UNIKOM)
+   ========================================= */
+.left-panel {
+    width: 45%;
+    /* Gradient Biru UNIKOM Lebih Deep */
+    background: linear-gradient(135deg, #002b5c 0%, #004e92 100%);
+    padding: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiasan Lingkaran Abstrak */
+.overlay-pattern {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+.left-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+/* Logo & Animasi Floating */
+.logo-box img {
+    width: 110px;
+    background: white;
+    padding: 12px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    /* Animasi Melayang */
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.left-panel h2 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.campus-name {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Info List */
+.info-box ul {
+    list-style: none;
+    text-align: left;
+}
+.info-box li {
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+.info-box i {
+    margin-right: 10px;
+    color: #ffd700; /* Emas */
+    width: 20px;
+    text-align: center;
+}
+
+/* =========================================
+   4. PANEL KANAN (FORM & INTERAKSI)
+   ========================================= */
+.right-panel {
+    width: 55%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-header { margin-bottom: 25px; }
+.login-header h3 {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+.login-header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* --- TOMBOL METAMASK (Style Baru) --- */
+.btn-metamask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border: 2px solid #f6851b; /* Warna Fox MetaMask */
+    color: #f6851b;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.btn-metamask:hover {
+    background: #fff5e6;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(246, 133, 27, 0.2);
+}
+
+/* State kalau sudah connect (Hijau) */
+.btn-metamask.connected {
+    background: #e8f5e9;
+    border-color: #2ecc71;
+    color: #2ecc71;
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Info Wallet Text */
+#walletAddress {
+    font-size: 0.8rem;
+    text-align: center;
+    background: #f1f1f1;
+    padding: 8px;
+    border-radius: 8px;
+    color: #555;
+    margin-bottom: 20px;
+    border: 1px dashed #ccc;
+}
+
+/* --- FORM INPUTS --- */
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-wrapper { position: relative; }
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Agak kotak dikit biar modern */
+    background: #fff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-wrapper input:focus {
+    border-color: #005b96;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 91, 150, 0.1);
+}
+.input-wrapper input:focus + i { color: #005b96; }
+
+/* STYLE KHUSUS: DISABLED (Terkunci) */
+.input-wrapper input:disabled {
+    background-color: #f2f2f2;
+    color: #999;
+    cursor: not-allowed;
+    border-color: #eee;
+}
+
+/* --- TOMBOL LOGIN --- */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-login:hover {
+    background: #002244;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
+}
+
+.btn-login:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.footer-copy {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ccc;
+    padding-top: 20px;
+}
+
+/* =========================================
+   5. RESPONSIVE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+        margin: 20px 0;
+    }
+    .left-panel { padding: 30px; }
+    .right-panel { padding: 30px 20px; }
+    
+    .logo-box img { width: 80px; }
+    .left-panel h2 { font-size: 1.4rem; }
+}
